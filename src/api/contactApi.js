@@ -35,3 +35,21 @@ export const getContactById = (id) => {
     }
   })
 }
+
+export const createContact = (objContact) => {
+  return new Promise(async (resolve, reject) => {
+    try {
+
+      const response = await axios({
+        method: 'POST',
+        url: `${BASE_URL}/contact`,
+        data: objContact
+      })
+
+      resolve(response)
+
+    } catch (error) {
+      reject(error)
+    }
+  })
+}

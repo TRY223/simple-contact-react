@@ -5,6 +5,9 @@ import { getContactById } from '../../api/contactApi';
 import { startLoadDetailContact, loadDetailContactSuccess, loadDetailContactFailure } from '../../redux/actions/contactAction/contactActions';
 import LoadingIndicator from '../components/LoadingIndicator';
 
+// TESTING
+const DUMMY_RESPONSE_DATA = {"message":"Get contact by ID","data":{"id":"b3abd640-c92b-11e8-b02f-cbfa15db428b","firstName":"Luke","lastName":"Skywalker","age":29,"photo":"N/A"}}
+
 const DetailContactPage = () => {
   const { id } = useParams();
   const [contactState, contactDispatch] = useReducer(contactReducer, contactInitialState);
@@ -16,6 +19,10 @@ const DetailContactPage = () => {
 
   const getDataContact = async () => {
     contactDispatch(startLoadDetailContact());
+    
+    // TESTING
+    return contactDispatch(loadDetailContactSuccess(DUMMY_RESPONSE_DATA.data));
+
     try {
       const response = await getContactById(id);
       if (response?.status === 200 ?? 500) {
