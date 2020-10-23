@@ -1,4 +1,4 @@
-import { ADD_CONTACT, ADD_CONTACT_FAILURE, LOADING_ADD_CONTACT, LOAD_CONTACTS_SUCCESS, LOAD_CONTACTS_FAILURE, LOADING, LOAD_DETAIL_CONTACT_SUCCESS, LOAD_DETAIL_CONTACT_FAILURE, LOADING_DETAIL_CONTACT, LOADING_DELETE_CONTACT, DELETE_CONTACT_SUCCESS, DELETE_CONTACT_FAILURE } from '../actions/contactAction/contactActionTypes';
+import { ADD_CONTACT, ADD_CONTACT_FAILURE, LOADING_ADD_CONTACT, LOAD_CONTACTS_SUCCESS, LOAD_CONTACTS_FAILURE, LOADING, LOAD_DETAIL_CONTACT_SUCCESS, LOAD_DETAIL_CONTACT_FAILURE, LOADING_DETAIL_CONTACT, LOADING_DELETE_CONTACT, DELETE_CONTACT_SUCCESS, DELETE_CONTACT_FAILURE, LOADING_UPDATE_CONTACT, UPDATE_CONTACT_SUCCESS, UPDATE_CONTACT_FAILURE } from '../actions/contactAction/contactActionTypes';
 
 export const contactInitialState = {
   contacts: [],
@@ -7,10 +7,12 @@ export const contactInitialState = {
   isLoadingDetail: false,
   isLoadingAddContact: false,
   isLoadingDelete: false,
+  isLoadingUpdate: false,
   errorMessage: null,
   errorMessageDetail: null,
   errorMessageAddContact: null,
-  errorMessageDelete: null
+  errorMessageDelete: null,
+  errorMessageUpdate: null
 }
 
 export let contactLastState = { ...contactInitialState };
@@ -106,6 +108,29 @@ export default (state=contactInitialState, action) => {
         ...state,
         errorMessageDelete: action.payload,
         isLoadingDelete: false
+      };
+      return contactLastState;
+
+    case LOADING_UPDATE_CONTACT:
+      contactLastState = {
+        ...state,
+        isLoadingUpdate: true
+      };
+      return contactLastState;
+
+    case UPDATE_CONTACT_SUCCESS:
+      contactLastState = {
+        ...state,
+        selectedContact: action.payload,
+        isLoadingUpdate: false
+      };
+      return contactLastState;
+
+    case UPDATE_CONTACT_FAILURE:
+      contactLastState = {
+        ...state,
+        errorMessageUpdate: action.payload,
+        isLoadingUpdate: false
       };
       return contactLastState;
   

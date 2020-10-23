@@ -70,3 +70,22 @@ export const deleteContactById = (id) => {
     }
   })
 }
+
+export const updateContact = (id, objContact) => {
+  delete objContact.id;
+  return new Promise(async (resolve, reject) => {
+    try {
+
+      const response = await axios({
+        method: 'PUT',
+        url: `${BASE_URL}/contact/${id}`,
+        data: objContact
+      })
+
+      resolve(response)
+
+    } catch (error) {
+      reject(error)
+    }
+  })
+}

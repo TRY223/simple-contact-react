@@ -1,4 +1,4 @@
-import { ADD_CONTACT, ADD_CONTACT_FAILURE, LOADING_ADD_CONTACT, LOAD_CONTACTS_SUCCESS, LOAD_CONTACTS_FAILURE, LOADING, LOAD_DETAIL_CONTACT_SUCCESS, LOAD_DETAIL_CONTACT_FAILURE, LOADING_DETAIL_CONTACT, LOADING_DELETE_CONTACT, DELETE_CONTACT_SUCCESS, DELETE_CONTACT_FAILURE } from './contactActionTypes';
+import { ADD_CONTACT, ADD_CONTACT_FAILURE, LOADING_ADD_CONTACT, LOAD_CONTACTS_SUCCESS, LOAD_CONTACTS_FAILURE, LOADING, LOAD_DETAIL_CONTACT_SUCCESS, LOAD_DETAIL_CONTACT_FAILURE, LOADING_DETAIL_CONTACT, LOADING_DELETE_CONTACT, DELETE_CONTACT_SUCCESS, DELETE_CONTACT_FAILURE, UPDATE_CONTACT_FAILURE, UPDATE_CONTACT_SUCCESS, LOADING_UPDATE_CONTACT } from './contactActionTypes';
 
 export const addContact = (objContact) => ({
   type: ADD_CONTACT,
@@ -53,4 +53,17 @@ export const deleteContactSuccess = (id) => ({
 
 export const deleteContactFailure = (errorMessage) => ({
   type: DELETE_CONTACT_FAILURE
+});
+
+export const startLoadUpdateContact = () => ({
+  type: LOADING_UPDATE_CONTACT
+});
+
+export const updateContactSuccess = (objContact) => ({
+  type: UPDATE_CONTACT_SUCCESS,
+  payload: objContact
+});
+
+export const updateContactFailure = (errorMessage) => ({
+  type: UPDATE_CONTACT_FAILURE
 });

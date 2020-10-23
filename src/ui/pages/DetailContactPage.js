@@ -1,8 +1,8 @@
 import React, { useEffect, useReducer, useState } from 'react';
 import { useParams, useHistory } from 'react-router-dom';
 import contactReducer, { contactLastState } from '../../redux/reducers/contactReducer';
-import { getContactById, deleteContactById } from '../../api/contactApi';
-import { startLoadDetailContact, loadDetailContactSuccess, loadDetailContactFailure, startLoadDeleteContact, deleteContactSuccess, deleteContactFailure } from '../../redux/actions/contactAction/contactActions';
+import { getContactById, deleteContactById, updateContact } from '../../api/contactApi';
+import { startLoadDetailContact, loadDetailContactSuccess, loadDetailContactFailure, startLoadDeleteContact, deleteContactSuccess, deleteContactFailure, startLoadUpdateContact, updateContactSuccess,updateContactFailure } from '../../redux/actions/contactAction/contactActions';
 import LoadingIndicator from '../components/LoadingIndicator';
 import Modal from '../components/Modal/Modal';
 import FormContact from '../components/FormContact';
@@ -62,7 +62,23 @@ const DetailContactPage = () => {
     }
   }
 
-  const submitForm = async (objData) => {}
+  const submitForm = async (id, objData) => {
+    contactDispatch(startLoadUpdateContact());
+
+    try {
+      const response = await updateContact(contactState?.selectedContact?.id, formData);
+      if ((response?.status >= 200 ?? false) && (response?.status < 300 ?? false)) {
+        contactDispatch(updateContactSuccess(response?.data?.data ?? formData));
+        handleCloseModal();
+        handleClearFormData();
+      } else {
+        contactDispatch(updateContactFailure(response?.data?.message ?? 'error occured'));
+      }
+    } catch(e) {
+      console.log(`error submitForm:\n${e?.response?.data?.message}`);
+      contactDispatch(updateContactFailure(e?.response?.data?.message ?? e?.message ?? 'error occured'));
+    }
+  }
 
   const makeBody = () => {
     return (
@@ -87,15 +103,16 @@ const DetailContactPage = () => {
           <Modal show={isShowModal} handleClose={handleCloseModal}>
             <h4>Edit Contact</h4>
             <FormContact
-              isLoading={contactState?.isLoadingAddContact ?? false}
+              initialData={contactState?.selectedContact}
+              onLoad={(data) => setFormdata(data)}
+              isLoading={contactState?.isLoadingUpdate ?? false}
               onChange={(e) => {
                 setFormdata({...formData, [e.target.name]: e.target.value});
               }}
               onSubmit={(e) => {
                 e.preventDefault();
                 formData.age = parseInt(formData?.age);
-                console.log(formData);
-                submitForm(formData);
+                submitForm(contactState?.selectedContact?.id, formData);
               }} />
           </Modal>
       </div>
