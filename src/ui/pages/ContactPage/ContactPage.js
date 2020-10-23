@@ -57,6 +57,7 @@ const ContactPage = () => {
       const response = await createContact(objData);
       if ((response?.status >= 200 ?? false) && (response?.status < 300 ?? false)) {
         contactDispatch(addContact(objData));
+        getDataContacts();
         handleCloseModal();
         handleClearFormData();
       }
