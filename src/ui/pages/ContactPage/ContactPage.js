@@ -71,12 +71,12 @@ const ContactPage = () => {
   }
 
   return (
-    <div>
+    <div className={styles['container']}>
       <h1>Contact Page</h1>
       <div>
         <img height={200} src={illustration} alt='illustration' />
       </div>
-      <button onClick={handleOpenModal}>Tambah</button>
+      <button className={styles['button']} onClick={handleOpenModal}>Tambah</button>
       <Modal show={isShowModal} handleClose={handleCloseModal}>
         <h4>Create New Contact</h4>
         <FormContact

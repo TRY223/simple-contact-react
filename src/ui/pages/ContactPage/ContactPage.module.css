@@ -1,8 +1,23 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .list-container {
   display: flex;
   flex-direction: row;
   justify-content: center;
+  /* align-items: center; */
+  /* align-content: stretch; */
   flex-wrap: wrap;
   padding-left: 100px;
   padding-right: 100px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  background-color: whitesmoke;
+}
+
+.button {
+  margin: 10px;
 }

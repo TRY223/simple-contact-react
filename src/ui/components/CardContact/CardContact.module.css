@@ -1,13 +1,36 @@
 .card-container {
   display: flex;
   flex-direction: column;
+  justify-content: space-evenly;
   width: 200px;
   height: 200px;
   background-color: white;
-  border-color: aquamarine;
-  border-radius: 10px;
+  border-color: azure;
+  border-radius: 18px;
   border-width: 1px;
   border-style: solid;
   align-items: center;
   margin: 15px;
+  padding: 10px;
+}
+
+.card-container:hover {
+  cursor: pointer;
+}
+
+.img-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 40px;
+  width: 40px;
+  border-radius: 100px;
+}
+
+.img {
+  display: flex;
+  object-fit: cover;
+  height: 70px;
+  width: 70px;
+  border-radius: 100%;
 }
