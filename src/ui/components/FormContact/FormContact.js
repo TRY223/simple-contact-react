@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from 'react';
-import LoadingIndicator from './LoadingIndicator';
+import LoadingIndicator from '../LoadingIndicator/LoadingIndicator';
 
 const FormAddContact = ({ onSubmit, onChange, isLoading, onLoad = () => null, initialData = {} }) => {
   

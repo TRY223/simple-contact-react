@@ -1,13 +1,13 @@
 import React, { useReducer, useEffect, useState } from 'react';
 import { useHistory } from "react-router-dom";
-import { loadContactsSuccess, loadContactsFailure, startLoadContacts, addContact, addContactFailure, startLoadAddContact } from '../../redux/actions/contactAction/contactActions'
-import contactReducer, { contactLastState } from '../../redux/reducers/contactReducer';
-import { getAllContacts, createContact } from '../../api/contactApi'
-import LoadingIndicator from '../components/LoadingIndicator';
-import ContactCard from '../components/CardContact';
-import Modal from '../components/Modal/Modal';
-import FormContact from '../components/FormContact';
-import illustration from '../../assets/undraw_people_search_wctu.svg';
+import { loadContactsSuccess, loadContactsFailure, startLoadContacts, addContact, addContactFailure, startLoadAddContact } from '../../../redux/actions/contactAction/contactActions'
+import contactReducer, { contactLastState } from '../../../redux/reducers/contactReducer';
+import { getAllContacts, createContact } from '../../../api/contactApi'
+import LoadingIndicator from '../../components/LoadingIndicator/LoadingIndicator';
+import CardContact from '../../components/CardContact/CardContact';
+import Modal from '../../components/Modal/Modal';
+import FormContact from '../../components/FormContact/FormContact';
+import illustration from '../../../assets/undraw_people_search_wctu.svg';
 
 
 const ContactPage = () => {
@@ -94,7 +94,7 @@ const ContactPage = () => {
 
       {contactState?.isLoading 
         ? <div><LoadingIndicator /></div>
-        : contactState.contacts.map((contact, idx) => <ContactCard key={idx} contact={contact} onClick={() => history.push(`/contacts/${contact.id}`)} />)}
+        : contactState.contacts.map((contact, idx) => <CardContact key={idx} contact={contact} onClick={() => history.push(`/contacts/${contact.id}`)} />)}
     </div>
   )
 }

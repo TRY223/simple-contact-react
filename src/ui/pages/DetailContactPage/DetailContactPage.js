@@ -1,12 +1,12 @@
 import React, { useEffect, useReducer, useState } from 'react';
 import { useParams, useHistory } from 'react-router-dom';
-import contactReducer, { contactLastState } from '../../redux/reducers/contactReducer';
-import { getContactById, deleteContactById, updateContact } from '../../api/contactApi';
-import { startLoadDetailContact, loadDetailContactSuccess, loadDetailContactFailure, startLoadDeleteContact, deleteContactSuccess, deleteContactFailure, startLoadUpdateContact, updateContactSuccess,updateContactFailure } from '../../redux/actions/contactAction/contactActions';
-import LoadingIndicator from '../components/LoadingIndicator';
-import Modal from '../components/Modal/Modal';
-import FormContact from '../components/FormContact';
-import illustration from '../../assets/undraw_profile_details_f8b7.svg';
+import contactReducer, { contactLastState } from '../../../redux/reducers/contactReducer';
+import { getContactById, deleteContactById, updateContact } from '../../../api/contactApi';
+import { startLoadDetailContact, loadDetailContactSuccess, loadDetailContactFailure, startLoadDeleteContact, deleteContactSuccess, deleteContactFailure, startLoadUpdateContact, updateContactSuccess,updateContactFailure } from '../../../redux/actions/contactAction/contactActions';
+import LoadingIndicator from '../../components/LoadingIndicator/LoadingIndicator';
+import Modal from '../../components/Modal/Modal';
+import FormContact from '../../components/FormContact/FormContact';
+import illustration from '../../../assets/undraw_profile_details_f8b7.svg';
 
 const DetailContactPage = () => {
   const { id } = useParams();

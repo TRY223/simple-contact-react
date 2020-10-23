@@ -4,8 +4,8 @@ import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-d
 
 import './App.css';
 import store from './redux/store';
-import ContactPage from './ui/pages/ContactPage';
-import DetailContactPage from './ui/pages/DetailContactPage';
+import ContactPage from './ui/pages/ContactPage/ContactPage';
+import DetailContactPage from './ui/pages/DetailContactPage/DetailContactPage';
 
 function App() {
   return (

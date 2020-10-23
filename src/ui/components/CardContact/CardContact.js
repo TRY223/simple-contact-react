@@ -1,6 +1,6 @@
 import React from 'react';
 
-const ContactCard = ({ contact, onClick }) => {
+const CardContact = ({ contact, onClick }) => {
   return (
     <div onClick={onClick}>
       {contact?.firstName} {contact?.lastName}
@@ -8,4 +8,4 @@ const ContactCard = ({ contact, onClick }) => {
   );
 }
 
-export default ContactCard;
+export default CardContact;

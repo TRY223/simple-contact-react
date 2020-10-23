@@ -1,10 +1,10 @@
 import React from 'react';
-import './Modal.css';
+import styles from './Modal.module.css';
 
 const Modal = ({ handleClose, show, children }) => {
   return show ? (
-    <div className='modal display-block'>
-      <section className="modal-main">
+    <div className={`${styles.modal} ${styles['display-block']}`}>
+      <section className={styles['modal-main']}>
         {children}
         <button onClick={handleClose}>close</button>
       </section>
