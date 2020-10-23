@@ -8,7 +8,7 @@ import CardContact from '../../components/CardContact/CardContact';
 import Modal from '../../components/Modal/Modal';
 import FormContact from '../../components/FormContact/FormContact';
 import illustration from '../../../assets/undraw_people_search_wctu.svg';
-
+import styles from './ContactPage.module.css';
 
 const ContactPage = () => {
 
@@ -92,9 +92,11 @@ const ContactPage = () => {
           }} />
       </Modal>
 
-      {contactState?.isLoading 
-        ? <div><LoadingIndicator /></div>
-        : contactState.contacts.map((contact, idx) => <CardContact key={idx} contact={contact} onClick={() => history.push(`/contacts/${contact.id}`)} />)}
+      {contactState?.isLoading ?
+        <div><LoadingIndicator /></div> :
+        <div className={styles['list-container']}>
+          {contactState.contacts.map((contact, idx) => <CardContact key={idx} contact={contact} onClick={() => history.push(`/contacts/${contact.id}`)} />)}
+        </div>}
     </div>
   )
 }
