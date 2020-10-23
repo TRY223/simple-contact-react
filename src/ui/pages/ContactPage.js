@@ -1,7 +1,7 @@
 import React, { useReducer, useEffect, useState } from 'react';
 import { useHistory } from "react-router-dom";
 import { loadContactsSuccess, loadContactsFailure, startLoadContacts, addContact, addContactFailure, startLoadAddContact } from '../../redux/actions/contactAction/contactActions'
-import contactReducer, { contactInitialState } from '../../redux/reducers/contactReducer';
+import contactReducer, { contactLastState } from '../../redux/reducers/contactReducer';
 import { getAllContacts, createContact } from '../../api/contactApi'
 import LoadingIndicator from '../components/LoadingIndicator';
 import ContactCard from '../components/CardContact';
@@ -14,7 +14,7 @@ const DUMMY_RESPONSE_DATA = {"message":"Get contacts","data":[{"id":"b3abd640-c9
 const ContactPage = () => {
 
   const history = useHistory();
-  const [contactState, contactDispatch] = useReducer(contactReducer, contactInitialState);
+  const [contactState, contactDispatch] = useReducer(contactReducer, contactLastState);
   const [isShowModal, setIsShowModal] = useState(false);
   const [formData, setFormdata] = useState({});
 
@@ -25,6 +25,9 @@ const ContactPage = () => {
   useEffect(() => {
     getDataContacts();
   }, [])
+
+  console.log('Contact page');
+  console.log(contactState?.contacts);
 
   const getDataContacts = async () => {
     contactDispatch(startLoadContacts());

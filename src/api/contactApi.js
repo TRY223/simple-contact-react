@@ -53,3 +53,20 @@ export const createContact = (objContact) => {
     }
   })
 }
+
+export const deleteContactById = (id) => {
+  return new Promise(async (resolve, reject) => {
+    try {
+
+      const response = await axios({
+        method: 'DELETE',
+        url: `${BASE_URL}/contact/${id}`
+      })
+
+      resolve(response)
+
+    } catch (error) {
+      reject(error)
+    }
+  })
+}
