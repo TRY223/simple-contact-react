@@ -2,16 +2,14 @@ import React from 'react';
 import './Modal.css';
 
 const Modal = ({ handleClose, show, children }) => {
-  const showHideClassName = show ? "modal display-block" : "modal display-none";
-
-  return (
-    <div className={showHideClassName}>
+  return show ? (
+    <div className='modal display-block'>
       <section className="modal-main">
         {children}
         <button onClick={handleClose}>close</button>
       </section>
     </div>
-  );
+  ) : null;
 };
 
 export default Modal;
